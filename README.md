@@ -1,4 +1,4 @@
-# quarkus-helloworld-rest Project 
+# quarkus-rest-sample Application 
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
@@ -59,3 +59,51 @@ If you want to learn more about building native executables, please consult http
 Easily start your RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+
+## Running 
+Inside the project directory
+```shell script
+java -jar quarkus-rest-sample.jar
+```
+![img.png](img.png)
+
+It will launch a quarkus sample REST app 
+with Fruit as an Entity class and 
+FruitResource as a controller class
+
+### GET Endpoint : /fruits
+Fetches all the Fruits from collection
+```shell script
+  parameters: -
+  returns Set<Fruit>
+```
+
+### PUT Endpoint : /fruits
+Adds new Fruit object to the existing collection
+```shell script
+  parameters: 
+    Form Body:
+      name:
+      description:
+  returns Set<Fruit>
+```
+
+### POST Endpoint : /fruits
+Updates the description of fruits
+```shell script
+  parameters: 
+    Form Body:
+      name:
+      description:
+  returns Set<Fruit>
+```
+
+### DELETE Endpoint : /fruits
+```shell script
+    parameters:
+      fruitname
+    returns Set<Fruit>
+```
+
+
+
