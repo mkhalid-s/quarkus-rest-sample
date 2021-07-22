@@ -66,8 +66,10 @@ jobs:
   openshift-ci-cd:
     name: Build and deploy to OpenShift
     runs-on: ubuntu-20.04
-    environment: production
-
+    environment:
+      name: production
+      url: ${{ steps.deploy-and-expose.outputs.route }}
+    
     outputs:
         ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
         SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
