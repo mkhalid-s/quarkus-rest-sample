@@ -1,3 +1,5 @@
+[![OpenShift](https://github.com/mkhalid-s/quarkus-rest-sample/actions/workflows/openshift.yml/badge.svg)](https://github.com/mkhalid-s/quarkus-rest-sample/actions/workflows/openshift.yml)
+
 # quarkus-rest-sample Application 
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
