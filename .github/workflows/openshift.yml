@@ -127,7 +127,7 @@ jobs:
         # https://github.com/redhat-actions/buildah-build#scratch-build-inputs
         # Otherwise, point this to your Dockerfile relative to the repository root.
         dockerfiles: |
-          ./Dockerfile
+          ./src/main/docker/Dockerfile.jvm
 
     # https://github.com/redhat-actions/push-to-registry#readme
     - name: Push to registry
