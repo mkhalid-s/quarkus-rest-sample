@@ -66,8 +66,10 @@ jobs:
   openshift-ci-cd:
     name: Build and deploy to OpenShift
     runs-on: ubuntu-20.04
-    environment: production
-
+    environment:
+      name: production
+      url: ${{ steps.deploy-and-expose.outputs.route }}
+    
     outputs:
         ROUTE: ${{ steps.deploy-and-expose.outputs.route }}
         SELECTOR: ${{ steps.deploy-and-expose.outputs.selector }}
@@ -115,7 +117,8 @@ jobs:
       if: env.TAG == ''
       run: |
         echo "TAG=${GITHUB_SHA::7}" | tee -a $GITHUB_ENV
-
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
     # https://github.com/redhat-actions/buildah-build#readme
     - name: Build from Dockerfile
       id: image-build
@@ -146,7 +149,10 @@ jobs:
     # The GitHub Ubuntu runner already includes oc.
     # Otherwise, https://github.com/redhat-actions/openshift-tools-installer can be used to install oc,
     # as well as many other tools.
-
+    - name: Set UUID
+      id: generate-uuid
+      uses: filipstefansson/uuid-action@v1
+        
     # https://github.com/redhat-actions/oc-login#readme
     - name: Log in to OpenShift
       uses: redhat-actions/oc-login@v1
