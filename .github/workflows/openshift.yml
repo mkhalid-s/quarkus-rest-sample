@@ -152,7 +152,7 @@ jobs:
     - name: Set UUID
       id: generate-uuid
       uses: filipstefansson/uuid-action@v1
-    - name: Sleep for 3 minutes for docker image to be available
+    - name: Sleep for 2 minutes for docker image to be available for pulling
       run: sleep 100s
       shell: bash    
     # https://github.com/redhat-actions/oc-login#readme
