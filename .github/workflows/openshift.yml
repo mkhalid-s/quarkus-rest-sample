@@ -47,7 +47,7 @@ env:
 
   # ⬇️ EDIT with any additional port your application should expose.
   # By default, oc new-app action creates a service to the image's lowest numeric exposed port.
-  APP_PORT: ""
+  APP_PORT: "80:8080"
 
   # ⬇️ EDIT if you wish to set the kube context's namespace after login. Leave blank to use the default namespace.
   OPENSHIFT_NAMESPACE: ""
@@ -152,7 +152,9 @@ jobs:
     - name: Set UUID
       id: generate-uuid
       uses: filipstefansson/uuid-action@v1
-        
+    - name: Sleep for 3 minutes for docker image to be available
+      run: sleep 100s
+      shell: bash    
     # https://github.com/redhat-actions/oc-login#readme
     - name: Log in to OpenShift
       uses: redhat-actions/oc-login@v1
@@ -171,7 +173,7 @@ jobs:
         app_name: ${{ env.APP_NAME }}
         image: ${{ steps.push-to-registry.outputs.registry-path }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-        port: ${{ env.APP_PORT }}
+        ports: ${{ env.APP_PORT }}
 
     - name: View application route
       run: |
