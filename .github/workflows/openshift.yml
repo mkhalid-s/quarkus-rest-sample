@@ -173,7 +173,7 @@ jobs:
         app_name: ${{ env.APP_NAME }}
         image: ${{ steps.push-to-registry.outputs.registry-path }}
         namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-        ports: ${{ env.APP_PORT }}
+        port: ${{ env.APP_PORT }}
 
     - name: View application route
       run: |
